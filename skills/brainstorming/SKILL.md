@@ -68,6 +68,24 @@ digraph brainstorming {
 - Present options conversationally with your recommendation and reasoning
 - Lead with your recommended option and explain why
 
+**Track-Specific Approach Generation:**
+
+**ML context** (building/training models, running experiments):
+- Propose **3+ approaches**: (1) standard/strong baseline, (2) scaling/systems-optimized, (3) non-obvious/cross-domain idea (even if risky)
+- For each approach: list **key assumptions**, **failure modes** + how they appear in metrics/logs, **cheapest test/ablation** to validate quickly
+- Include a de-risking strategy: what's the minimalist version that proves the approach in < 60 seconds?
+- **REQUIRED SUB-SKILL:** superpowers:ml-experimentation for experiment lifecycle after design approval
+
+**DS/Analysis context** (analyzing data for decisions):
+- **Frame the problem first:** What decision? What lever? What metric? Counterfactual? Constraints?
+- Propose **3+ analytical angles**: (1) descriptive/exploratory, (2) standard inferential/predictive, (3) non-obvious/cross-domain (causal inference, simulation, Bayesian, information-theoretic)
+- Generate 8-12 candidate approaches → narrow to 3-5 for deep evaluation with trade-offs
+- Include **risk register**: top 5 ways the analysis could produce wrong or misleading conclusions
+- **REQUIRED SUB-SKILL:** superpowers:scientific-eda for session structure after design approval
+
+**SW context** (default — building software features, fixing bugs):
+- Existing behavior: propose 2-3 approaches with trade-offs and recommendation
+
 **Presenting the design:**
 - Once you believe you understand what you're building, present the design
 - Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced

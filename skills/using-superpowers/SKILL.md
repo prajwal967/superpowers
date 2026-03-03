@@ -82,9 +82,23 @@ When multiple skills could apply, use this order:
 "Let's build X" → brainstorming first, then implementation skills.
 "Fix this bug" → debugging first, then domain-specific skills.
 
+## Track Detection
+
+When the user's task involves ML or data science, invoke the domain skill:
+
+| Prompt signals | Track | Invoke |
+|---|---|---|
+| train, model, experiment, hypothesis, GPU, epoch, loss, fine-tune, neural net | ML | superpowers:ml-experimentation |
+| analyze data, EDA, CSV, correlation, distribution, statistical test, effect size | DS | superpowers:scientific-eda |
+| build, feature, fix, refactor, deploy, API, test | SW | (default workflow) |
+
+If signals are ambiguous or span tracks, ask: "This could follow the ML, data science, or software development workflow. Which fits best?"
+
+Invoke the domain skill ALONGSIDE brainstorming — domain skill first for context, then brainstorming for design.
+
 ## Skill Types
 
-**Rigid** (TDD, debugging): Follow exactly. Don't adapt away discipline.
+**Rigid** (TDD, debugging, ml-experimentation, scientific-eda): Follow exactly. Don't adapt away discipline.
 
 **Flexible** (patterns): Adapt principles to context.
 
