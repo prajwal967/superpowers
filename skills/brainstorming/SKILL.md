@@ -73,15 +73,20 @@ digraph brainstorming {
 **ML context** (building/training models, running experiments):
 - Propose **3+ approaches**: (1) standard/strong baseline, (2) scaling/systems-optimized, (3) non-obvious/cross-domain idea (even if risky)
 - For each approach: list **key assumptions**, **failure modes** + how they appear in metrics/logs, **cheapest test/ablation** to validate quickly
-- Include a de-risking strategy: what's the minimalist version that proves the approach in < 60 seconds?
-- **REQUIRED SUB-SKILL:** superpowers:ml-experimentation for experiment lifecycle after design approval
+- Include a **de-risking strategy**: what's the minimalist version that proves the approach in < 60 seconds? If a run would take > 2 minutes, find a proxy that finishes in under 1 minute
+- **Correctness checklist** (surface in design, required before full run): dataset sanity check, shape/dtype assertions, determinism (fix seed), single-iteration test (1 step end-to-end), overfit-a-small-batch (loss → near 0)
+- **Experiment structure**: clarify whether this is a new experiment (different question → new directory + JOURNAL.md) or a new run (same question, tweaks → new run under `runs/` named `YYYY-MM-DDTHH-MM-SS-<slug>`)
+- **Journal-first discipline**: before each next step read JOURNAL.md; record observations, anomalies, hunches with tags `[WEIRD]`, `[HUNCH]`, `[TODO]`, `[RESOLVED]`
+- **Reproducibility**: seeds, hyperparameters, and config diffs between runs go in JOURNAL.md; git commit before each significant run
 
 **DS/Analysis context** (analyzing data for decisions):
-- **Frame the problem first:** What decision? What lever? What metric? Counterfactual? Constraints?
+- **Frame the problem first:** What decision? What lever? What metric? Counterfactual? Constraints? If the user skips framing, push back — a well-framed question is worth more than a sophisticated model on the wrong problem
 - Propose **3+ analytical angles**: (1) descriptive/exploratory, (2) standard inferential/predictive, (3) non-obvious/cross-domain (causal inference, simulation, Bayesian, information-theoretic)
 - Generate 8-12 candidate approaches → narrow to 3-5 for deep evaluation with trade-offs
-- Include **risk register**: top 5 ways the analysis could produce wrong or misleading conclusions
-- **REQUIRED SUB-SKILL:** superpowers:scientific-eda for session structure after design approval
+- Include **risk register**: top 5 ways the analysis could produce wrong or misleading conclusions, with early-detection signals and mitigations
+- **Statistical rigor** (required in design): effect sizes + confidence intervals over bare p-values; state multiple comparisons correction method if >1 hypothesis; include power analysis; audit assumptions for each test/model
+- **Session structure**: each analysis lives in `analysis/YYYY-MM-DDTHH-MM-SS-<slug>/` with `journal.md` (append-only), `plots/`, and `scripts/`; all plots saved as WebP
+- **Ask-why discipline**: before each plot or table, ask what decision or question it serves; one step at a time, suggest the next step and wait for confirmation
 
 **SW context** (default — building software features, fixing bugs):
 - Existing behavior: propose 2-3 approaches with trade-offs and recommendation
